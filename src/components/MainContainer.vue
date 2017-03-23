@@ -25,13 +25,14 @@
 </template>
 
 <script>
-import Vue from 'vue'
 import Products from './Products/Products.vue'
-
-Vue.component('app-products', Products)
 
 export default {
   name: 'mainContainer',
+  components: {
+    'app-products': Products
+
+  },
   data () {
     return {
       msg: 'Great!',
