@@ -11,14 +11,25 @@
           </button>
           <a class="navbar-brand" href="#">Mysoundtips</a>
         </div>
+
       </div>
     </nav>
+    <div class="row">
+      <div class="col-sm-12">
+        <app-products></app-products>
+      </div>
+    </div>
   </div>
 
   </div>
 </template>
 
 <script>
+import Vue from 'vue'
+import Products from './Products/Products.vue'
+
+Vue.component('app-products', Products)
+
 export default {
   name: 'mainContainer',
   data () {
