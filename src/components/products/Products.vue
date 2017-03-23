@@ -1,6 +1,6 @@
 <template>
-<div id="productsView">
-  <h1> Here's my product View </h1>
+<div class="productsView">
+  <h1> {{ message }} </h1>
   <div v-for="product in productsList">
     <h2>{{ product.name }}</h2>
     <p>{{ product.description }}</p>
@@ -15,7 +15,7 @@ export default{
   name: 'productsView',
   data () {
     return {
-      message: 'A message for display',
+      message: 'Here is my products: ',
       productsList: productsList
     }
   }
