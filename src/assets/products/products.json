@@ -1,10 +1,51 @@
 [
   {
-    "name": "Produto 1",
-    "description": "Este é o meu primeiro produto"
+    "id": 0,
+    "name": "Led Zeppelin",
+    "local": "Chicago - 1974",
+    "description": "A crazy time trip to chicago - 1974, Tickets guaranteed to see the legends.",
+    "image" : "lz.jpg"
   },
   {
-    "name": "Produto 2",
-    "description": "Este é o meu segundo produto"
+    "id": 1,
+    "name": "Jimmy Hendrix Experience - VIP concert",
+    "local": "Lakeshore - 1970",
+    "description": "The best way to see jimmy play, just for you!",
+    "image" : "../../assets/products/images/1.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Janis Joplin",
+    "local": "Maryland - 1970",
+    "description": "Get this trip if you want to join the rock'n'roll queen musa linda!",
+    "image" : "../../assets/products/images/2.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Jhonny Cash",
+    "local": "California State Prison - 1968",
+    "description": "Passport to 1968, the most romantic show of your life...in Jail!",
+    "image" : "../../assets/products/images/3.jpg"
+  },
+  {
+    "id": 4,
+    "name": "The Beatles",
+    "local": "New Orleans - 1964",
+    "description": "Come with us to see this dudes",
+    "image" : "../../assets/products/images/4.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Pink Floyd",
+    "local": "Canergie Hall - 1972",
+    "description": "Pure psychedelic feelings",
+    "image" : "../../assets/products/images/5.jpg"
+  },
+  {
+    "id": 6,
+    "name": "The Rolling Stones",
+    "local": "ABC Theater = 1970",
+    "description": "START ME UP!",
+    "image" : "../../assets/products/images/6.jpg"
   }
 ]

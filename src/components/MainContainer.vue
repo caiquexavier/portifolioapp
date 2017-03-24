@@ -11,17 +11,25 @@
           </button>
           <a class="navbar-brand" href="#">Mysoundtips</a>
         </div>
-
       </div>
     </nav>
     <div class="row">
-      <div class="col-sm-12">
+
+      <div class="col-sm-2">
+
+      </div>
+
+      <div class="col-sm-8">
         <app-products></app-products>
       </div>
+
+      <div class="col-sm-2">
+
+      </div>
+
     </div>
   </div>
 
-  </div>
 </template>
 
 <script>
