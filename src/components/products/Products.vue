@@ -42,13 +42,11 @@ export default{
   data () {
     return {
       message: 'Here is my products: ',
-      imgUrl: '/static/img/',
       productsList: productsList
     }
   },
   methods: {
     add (product, productPrice) {
-      console.log(this.$store)
       this.$store.commit('increment')
       this.$store.commit('addProduct', product)
       this.$store.commit('updateAmount', productPrice)
@@ -94,5 +92,9 @@ export default{
   border-radius: 20px;
   background: #313131;
   color: #D9D9D9;
+}
+.btn-custom-buy:hover{
+  background: #D9D9D9;
+  color: #313131;
 }
 </style>

@@ -2,7 +2,7 @@
   <div class="mainContainer">
     <nav class="navbar navbar-fixed-top">
       <div class="container custom-margin">
-        <button class="btn-checkout"><i class="fa fa-shopping-cart" aria-hidden="true"></i><span class="cart-counter">{{checkoutCounter}}</span></button>
+        <button type="button" data-toggle="modal" data-target="#checkoutModal" class="btn-checkout"><i class="fa fa-shopping-cart" aria-hidden="true"></i><span class="cart-counter">{{checkoutCounter}}</span></button>
         <div class="navbar-header">
           <a class="navbar-brand" href="#"></a>
         </div>
@@ -22,14 +22,15 @@
       <div class="col-sm-2">
 
       </div>
-
     </div>
+    <checkout></checkout>
   </div>
 
 </template>
 
 <script>
 import Products from './Products/Products.vue'
+import Checkout from './checkout/Checkout.vue'
 
 export default {
   name: 'mainContainer',
@@ -40,7 +41,8 @@ export default {
     }
   },
   components: {
-    'app-products': Products
+    'app-products': Products,
+    'checkout': Checkout
   },
   computed: {
     checkoutCounter () {
@@ -67,6 +69,9 @@ export default {
   border-radius: 20px;
   background: #D9D9D9;
   color: #313131;
-;
+}
+.btn-checkout:hover{
+  background: #313131;
+  color: #D9D9D9;
 }
 </style>

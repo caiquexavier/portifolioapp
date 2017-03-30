@@ -17,7 +17,6 @@ export const store = new Vuex.Store({
       state.checkoutCount--
     },
     addProduct (state, item) {
-      alert(item)
       state.checkoutProducts.push(item)
     },
     updateAmount (state, amount) {
