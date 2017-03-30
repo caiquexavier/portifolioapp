@@ -1,18 +1,14 @@
 <template>
   <div class="mainContainer">
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
+    <nav class="navbar navbar-fixed-top">
+      <div class="container custom-margin">
+        <button class="btn-checkout"><i class="fa fa-shopping-cart" aria-hidden="true"></i><span class="cart-counter">{{checkoutCounter}}</span></button>
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Mysoundtips</a>
+          <a class="navbar-brand" href="#"></a>
         </div>
       </div>
     </nav>
+    <br/>
     <div class="row">
 
       <div class="col-sm-2">
@@ -37,15 +33,40 @@ import Products from './Products/Products.vue'
 
 export default {
   name: 'mainContainer',
-  components: {
-    'app-products': Products
-
-  },
   data () {
     return {
       msg: 'Great!',
       seen: true
     }
+  },
+  components: {
+    'app-products': Products
+  },
+  computed: {
+    checkoutCounter () {
+      return this.$store.state.checkoutCount
+    }
   }
 }
 </script>
+<style>
+.custom-margin{
+  margin-right: 0px;
+  padding: 10px;
+}
+.navbar-custom{
+  background-color: black;
+  opacity: 0.5;
+}
+.btn-checkout{
+  float:right;
+  margin: 20px;
+  font-size: 100px;
+  padding-right: 30px;
+  border: 3px solid #313131;
+  border-radius: 20px;
+  background: #D9D9D9;
+  color: #313131;
+;
+}
+</style>

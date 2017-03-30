@@ -4,6 +4,7 @@
     "name": "Led Zeppelin",
     "local": "Chicago - 1974",
     "description": "A crazy time trip to chicago - 1974, Tickets guaranteed to see the legends.",
+    "price": 240.00,
     "image" : "lz.jpg"
   },
   {
@@ -11,6 +12,7 @@
     "name": "Jimmy Hendrix Experience - VIP concert",
     "local": "Lakeshore - 1970",
     "description": "The best way to see jimmy play, just for you!",
+    "price": 120.00,
     "image" : "../../assets/products/images/1.jpg"
   },
   {
@@ -18,6 +20,7 @@
     "name": "Janis Joplin",
     "local": "Maryland - 1970",
     "description": "Get this trip if you want to join the rock'n'roll queen musa linda!",
+    "price": 300.00,
     "image" : "../../assets/products/images/2.jpg"
   },
   {
@@ -25,6 +28,7 @@
     "name": "Jhonny Cash",
     "local": "California State Prison - 1968",
     "description": "Passport to 1968, the most romantic show of your life...in Jail!",
+    "price": 180.00,
     "image" : "../../assets/products/images/3.jpg"
   },
   {
@@ -32,6 +36,7 @@
     "name": "The Beatles",
     "local": "New Orleans - 1964",
     "description": "Come with us to see this dudes",
+    "price": 400.00,
     "image" : "../../assets/products/images/4.jpg"
   },
   {
@@ -39,6 +44,7 @@
     "name": "Pink Floyd",
     "local": "Canergie Hall - 1972",
     "description": "Pure psychedelic feelings",
+    "price": 100.00,
     "image" : "../../assets/products/images/5.jpg"
   },
   {
@@ -46,6 +52,7 @@
     "name": "The Rolling Stones",
     "local": "ABC Theater = 1970",
     "description": "START ME UP!",
+    "price": 120.00,
     "image" : "../../assets/products/images/6.jpg"
   }
 ]
