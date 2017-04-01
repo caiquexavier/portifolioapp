@@ -30,9 +30,19 @@
             <div class="row" v-if="checkoutStep==3">
               <h2>Sucesso</h2>
             </div>
-
-            <div class="row cart">
-              Cart
+            <div id="cart" class="row cart">
+              <div class="col-sm-8">
+                <div class="cart-items" v-for="(item, index) in cartItems">
+                  {{ item.name | uppercase }} -
+                  {{ item.price | currency }}
+                  <button class="btn-remove-item" v-on:click="remove(index, item.price)"><i class="fa fa-times" aria-hidden="true"></i></button>
+                  <br/>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <label for="checkoutAmount"> Total</label>
+                <p id="ckacoutAmount" class="amount-value"> {{ checkoutAmount | currency }}</p>
+              </div>
             </div>
 
           </div>
@@ -55,12 +65,25 @@ export default{
       checkoutStep: 0
     }
   },
+  computed: {
+    cartItems () {
+      return this.$store.state.cartItems
+    },
+    checkoutAmount () {
+      return this.$store.state.checkoutAmount
+    }
+  },
   methods: {
     nextStep () {
       this.checkoutStep++
     },
     previousStep () {
       this.checkoutStep--
+    },
+    remove (index, itemPrice) {
+      this.$store.commit('decrement')
+      this.$store.commit('removeProduct', index)
+      this.$store.commit('updateAmountSubtract', itemPrice)
     }
   }
 
@@ -69,16 +92,48 @@ export default{
 
 <style>
 .modal-custom{
-  background: #D9D9D9;
+  /*background: #D9D9D9;*/
   color: #313131;
+  border: 0px;
+  box-shadow: 0px;
 }
 .modal-header-custom{
-  background: #313131;
-  color: #D9D9D9;
+  /*background: #313131;*/
+  color: #313131;
   border-radius: 5px;
 }
 .cart{
-  background: red;
+  padding: 5px;
+  margin: 20px auto;
+  border: 3px dashed #313131;
+  border-radius: 10px;
+  color: #313131;
+  background: #96fab1;
+}
+.cart-items{
+  font-weight: bold;
+  border: 2px solid white;
+  border-radius: 15px;
+  background: #313131;
+  color: #D9D9D9;
+}
+.cart-item{
+  margin: 0px;
+}
+.amount-value{
+  font-weight: bold;
+  font-size: 30px;
+  color: #313131;
+}
+.btn-remove-item{
+  float:right;
+  margin: auto;
+  font-size: 10px;
+  font-weight: bold;
+  border: 0px;
+  border-radius: 10px;
+  background: #313131;
+  color: #D9D9D9;
 }
 .close-custom{
   font-size: 40px;
@@ -93,7 +148,6 @@ export default{
   font-weight: bolder;
   padding-left: 20px;
   padding-right: 20px;
-  background: black;
   border: 3px solid white;
   border-radius: 20px;
   background: #313131;

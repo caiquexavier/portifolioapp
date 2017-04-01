@@ -2,35 +2,29 @@
   <div class="productsView">
     <h1> {{ message }} </h1>
 
-    <div v-for="product in productsList">
-      <div class="row product">
+    <div class="row product" v-for="product in productsList">
         <div class="col-sm-4">
-
           <div class="productdiv">
             <img class="productimg" :src="'/static/img/' + product.id + '.jpg'">
-
           </div>
         </div>
-        <div class="col-sm-8">
 
+        <div class="col-sm-6">
           <h2>{{ product.name }}</h2>
           <p>{{ product.description }}</p>
-          <div class="row">
 
-          </div>
           <div class="row price-checkout-div">
-            <div class="col-sm-6">
-              <h1> CR$ <span class="price">{{product.price}} </span> </h1>
-            </div>
-            <div class="col-sm-6 buy-div">
-              <button class="btn-custom-buy" v-on:click="add(product, product.price)"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
+            <div class="col-sm-12">
+              <h1> <span class="price">{{product.price | currency}} </span> </h1>
             </div>
           </div>
-
         </div>
-      </div>
-      <br/>
+
+        <div class="col-sm-2">
+            <button class="btn-custom-buy" v-on:click="add(product, product.price)"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
+        </div>
     </div>
+
   </div>
 </template>
 
@@ -57,10 +51,9 @@ export default{
 </script>
 <style scoped>
 .product{
-  background: #313131;
-  color: #D9D9D9;
-  border: 2px solid;
-  border-radius: 10px;
+  color: #313131;
+  border-top:  5px solid white;
+  border-bottom:  5px solid white;
 
 }
 .productdiv{
@@ -70,7 +63,6 @@ export default{
 }
 .productimg{
   height: 300px;
-
 }
 .price-checkout-div{
   margin: auto;
@@ -79,22 +71,21 @@ export default{
 .price{
   font-size: 70px;
 }
-.buy-div{
-  margin: auto;
-  text-align: right;
-
-}
 .btn-custom-buy{
-  font-size: 70px;
-  padding-right: 30px;
-  background: black;
-  border: 3px solid white;
-  border-radius: 20px;
-  background: #313131;
-  color: #D9D9D9;
+  margin-top: 40%;
+  font-size: 50px;
+  background: #f5f5f5;
+  border: 0px;
+  border-radius: 50%;
+	width: 100px;
+	height: 100px;
+  color: #313131;
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
 .btn-custom-buy:hover{
-  background: #D9D9D9;
-  color: #313131;
+  transition: all 0.2s ease 0s;
+  background: #00a9f7;
+  color: #D9D9D9;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 </style>
