@@ -1,6 +1,5 @@
 <template>
-  <div class="productsView">
-    <h1> {{ message }} </h1>
+  <div class="products">
 
     <div class="row product" v-for="product in productsList">
         <div class="col-sm-4">
@@ -32,7 +31,7 @@
 import productsList from '../../assets/products/products.json'
 
 export default{
-  name: 'productsView',
+  name: 'products',
   data () {
     return {
       message: 'Here is my products: ',
@@ -51,15 +50,15 @@ export default{
 </script>
 <style scoped>
 .product{
+  margin: 10px;
   color: #313131;
-  border-top:  5px solid white;
-  border-bottom:  5px solid white;
+  background-color: #fafafa;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 
 }
 .productdiv{
   margin: 10px;
   padding: 10px;
-
 }
 .productimg{
   height: 300px;
@@ -80,11 +79,12 @@ export default{
 	width: 100px;
 	height: 100px;
   color: #313131;
+  /*box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);*/
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
 .btn-custom-buy:hover{
   transition: all 0.2s ease 0s;
-  background: #00a9f7;
+  background: #02b387;
   color: #D9D9D9;
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
