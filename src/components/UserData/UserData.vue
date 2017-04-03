@@ -85,31 +85,27 @@ export default {
   name: 'userData',
   data () {
     return {
-      pageTitle: 'Personal Information',
-      costumer: {
-        ownId: null,
-        fullname: null,
-        email: null,
-        birthDate: null,
-        taxDocument: {
-          type: 'CPF',
-          number: null
-        },
-        phone: {
-          countryCode: null,
-          areaCode: null,
-          number: null
-        }
-      }
+      pageTitle: 'Personal Information'
     }
   },
   methods: {
     onSubmit () {
       this.$validator.validateAll().then(() => {
+        this.updateCostumer(this.costumer)
         this.$router.push('/address')
       }).catch(() => {
-
+        // TODO: implement Error
       })
+    },
+    /* Updates the costumer object in store */
+    updateCostumer (costumer) {
+      this.$store.commit('updateCostumer', costumer)
+    }
+  },
+  computed: {
+    /* Gets costumer object from store */
+    costumer () {
+      return this.$store.getters.costumer
     }
   }
 }

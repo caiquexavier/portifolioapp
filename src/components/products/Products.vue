@@ -41,7 +41,7 @@ export default{
   methods: {
     add (product, productPrice) {
       this.$store.commit('increment')
-      this.$store.commit('addProduct', product)
+      this.$store.commit('addProductToOrder', product)
       this.$store.commit('updateAmount', productPrice)
     }
   }
@@ -52,8 +52,8 @@ export default{
 .product{
   margin: 10px;
   color: #313131;
-  background-color: #fafafa;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  background-color: #fcfcfc;
+  /*box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);*/
 
 }
 .productdiv{

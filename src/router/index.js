@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from '@/components/Home.vue'
 import UserData from '@/components/UserData/UserData.vue'
 import Address from '@/components/Address/Address.vue'
+import Checkout from '@/components/Checkout/Checkout.vue'
 
 Vue.use(Router)
 
@@ -22,6 +23,11 @@ export default new Router({
       path: '/address',
       name: 'Address',
       component: Address
+    },
+    {
+      path: '/checkout',
+      name: 'Checkout',
+      component: Checkout
     }
   ]
 })
