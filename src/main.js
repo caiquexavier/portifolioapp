@@ -5,9 +5,11 @@ import App from './App'
 import router from './router'
 import { store } from './store.js'
 import Vue2Filters from 'vue2-filters'
+import VeeValidate from 'vee-validate'
 
 Vue.config.productionTip = false
 Vue.use(Vue2Filters)
+Vue.use(VeeValidate)
 
 /* eslint-disable no-new */
 new Vue({
