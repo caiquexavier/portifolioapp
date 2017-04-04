@@ -1,14 +1,26 @@
 <template>
   <div id="app">
-    <transition name="fade">
-      <router-view></router-view>
-    </transition>
+    <div v-if="loading" class="loader" id="loader-2">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div v-else>
+      <transition name="fade">
+        <router-view></router-view>
+      </transition>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'app'
+  name: 'app',
+  computed: {
+    loading () {
+      return this.$store.getters.loading
+    }
+  }
 }
 </script>
 
@@ -20,6 +32,44 @@ export default {
   text-align: center;
   background-color: white;
   color: #2c3e50;
+}
+
+#loader-2 span{
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  background-color: #02b387;
+  margin: 35px 5px;
+  margin-top: 500px;
+}
+
+#loader-2 span:nth-child(1){
+  animation: bounce 1s ease-in-out infinite;
+}
+
+#loader-2 span:nth-child(2){
+  animation: bounce 1s ease-in-out 0.33s infinite;
+}
+
+#loader-2 span:nth-child(3){
+  animation: bounce 1s ease-in-out 0.66s infinite;
+}
+
+@keyframes bounce{
+  0%, 75%, 100%{
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    transform: translateY(0);
+  }
+
+  25%{
+    -webkit-transform: translateY(-20px);
+    -ms-transform: translateY(-20px);
+    -o-transform: translateY(-20px);
+    transform: translateY(-20px);
+  }
 }
 .btn:focus {
   outline: none;
@@ -51,6 +101,7 @@ export default {
 }
 .footer {
     margin: auto;
+    margin-top: 200px;
     background: white;
     position: fixed;
     height: 120px;

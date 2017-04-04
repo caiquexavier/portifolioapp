@@ -119,13 +119,13 @@ export default {
 
       })
     },
-    /* Updates the costumer object in store */
+    /* Updates the costumer object in order store */
     updateCostumer (costumer) {
       this.$store.commit('updateCostumer', costumer)
     }
   },
   computed: {
-    /* Gets costumer object from store */
+    /* Gets costumer object from order store */
     costumer () {
       return this.$store.getters.costumer
     }
