@@ -132,7 +132,7 @@ export default {
 }
 .label-custom{
   float: left;
-  font-size: 30px;
+  font-size: 23px;
   font-weight: lighter;
   color: #02b387;
 }

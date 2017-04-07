@@ -25,6 +25,9 @@ module.exports = {
       '@': resolve('src'),
     }
   },
+  externals: {
+    Moip: 'Moip'
+  },
   module: {
     rules: [
       {

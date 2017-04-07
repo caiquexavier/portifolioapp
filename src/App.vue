@@ -1,6 +1,12 @@
 <template>
   <div id="app">
-    <div v-if="loading" class="loader" id="loader-2">
+    <div v-if="appError" style="margin-top:300px;">
+      <span class="error-handler"><i class="fa fa-frown-o" aria-hidden="true"></i></span>
+      <h2> {{ badMessage }} </h2>
+      <h4>{{ appErrorMsg }} </h4>
+      <button class="btn-custom" v-on:click="refreshApp" ><i class="fa fa-refresh" aria-hidden="true"></i></button>
+    </div>
+    <div v-else-if="loading" class="loader" id="loader-2">
       <span></span>
       <span></span>
       <span></span>
@@ -16,9 +22,25 @@
 <script>
 export default {
   name: 'app',
+  data () {
+    return {
+      badMessage: 'Opsss...Something went wrong, plase refresh the App'
+    }
+  },
   computed: {
+    appError () {
+      return this.$store.getters.appError
+    },
+    appErrorMsg () {
+      return this.$store.getters.appErrorMsg
+    },
     loading () {
       return this.$store.getters.loading
+    }
+  },
+  methods: {
+    refreshApp () {
+      console.log(this.vm)
     }
   }
 }
@@ -33,7 +55,27 @@ export default {
   background-color: white;
   color: #2c3e50;
 }
-
+.error-handler{
+  font-size: 150px;
+  color: #313131;
+}
+.btn-custom{
+  font-size: 100px;
+  background: #f5f5f5;
+  border: 0px;
+  border-radius: 50%;
+	width: 200px;
+	height: 200px;
+  color: #313131;
+  /*box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);*/
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+.btn-custom:hover{
+  transition: all 0.2s ease 0s;
+  background: #02b387;
+  color: #D9D9D9;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
 #loader-2 span{
   display: inline-block;
   width: 40px;

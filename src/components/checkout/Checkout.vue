@@ -1,6 +1,5 @@
 <template>
-  <div id="userData">
-    <form @submit.prevent="onSubmit">
+  <div id="checkout">
 
       <div class="row page-header">
         <div class="col-sm-2">
@@ -96,7 +95,6 @@
         </div>
       </footer>
 
-    </form>
   </div>
 </template>
 
@@ -121,6 +119,7 @@ export default {
     processOrderCheckout () {
       this.$store.commit('applyDiscount', this.discountAmount)
       this.$store.commit('applyAddition', this.additionAmount)
+      this.$router.push('/payment')
       this.$store.dispatch('orderApiCall')
     }
   },

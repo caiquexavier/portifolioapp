@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+import Moip from 'Moip'
 
 Vue.use(Vuex)
 Vue.use(axios)
@@ -8,6 +9,8 @@ Vue.use(axios)
 export const store = new Vuex.Store({
   state: {
     // App props
+    appError: false,
+    appErrorMsg: '',
     loading: false,
     checkoutCount: 0,
     checkoutAmount: 0,
@@ -17,6 +20,16 @@ export const store = new Vuex.Store({
         'Authorization': 'Basic ' + btoa('01010101010101010101010101010101' + ':' + 'ABABABABABABABABABABABABABABABABABABABAB')
       }
     },
+    // Public Key for encryptCard
+    public_key: '-----BEGIN PUBLIC KEY-----\n' +
+                'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoBttaXwRoI1Fbcond5mS\n' +
+                '7QOb7X2lykY5hvvDeLJelvFhpeLnS4YDwkrnziM3W00UNH1yiSDU+3JhfHu5G387\n' +
+                'O6uN9rIHXvL+TRzkVfa5iIjG+ap2N0/toPzy5ekpgxBicjtyPHEgoU6dRzdszEF4\n' +
+                'ItimGk5ACx/lMOvctncS5j3uWBaTPwyn0hshmtDwClf6dEZgQvm/dNaIkxHKV+9j\n' +
+                'Mn3ZfK/liT8A3xwaVvRzzuxf09xJTXrAd9v5VQbeWGxwFcW05oJulSFjmJA9Hcmb\n' +
+                'DYHJT+sG2mlZDEruCGAzCVubJwGY1aRlcs9AQc1jIm/l8JwH7le2kpk3QoX+gz0w\n' +
+                'WwIDAQAB\n' +
+                '-----END PUBLIC KEY-----',
     // Order Api
     orderApi: 'https://sandbox.moip.com.br/v2/orders',
     order: {
@@ -58,6 +71,15 @@ export const store = new Vuex.Store({
     createdOrder: false,
     createdOrderObj: {},
     orderId: null,
+    // Card Porps
+    paymentCard: {
+      number: '5555666677778884',
+      cvc: '123',
+      expMonth: '12',
+      expYear: '18'
+    },
+    paymentCardHash: null,
+    paymentCardType: null,
     // Payment Api
     paymentApi: null,
     payment: {
@@ -87,6 +109,12 @@ export const store = new Vuex.Store({
   },
   getters: {
     // Set Getters For External Access to Props
+    appError (state) {
+      return state.appError
+    },
+    appErrorMsg (state) {
+      return state.appErrorMsg
+    },
     loading (state) {
       return state.loading
     },
@@ -101,9 +129,20 @@ export const store = new Vuex.Store({
     },
     createdOrder (state) {
       return state.createdOrder
+    },
+    paymentCard (state) {
+      return state.paymentCard
+    },
+    paymentCardType (state) {
+      return state.paymentCardType
     }
   },
   mutations: {
+    // Set App error
+    setError (state, errorMsg) {
+      state.appError = true
+      state.appErrorMsg = errorMsg
+    },
     // Sets App Loader
     loader (state, value) {
       state.loading = value
@@ -154,6 +193,28 @@ export const store = new Vuex.Store({
       state.createdOrderObj = responseData
       state.paymentApi = 'https://sandbox.moip.com.br/v2/orders/' + responseData.id + '/payments'
     },
+    // Sets the payment card Object
+    setPaymentCard (state, paymentCard) {
+      state.paymentCard = paymentCard
+    },
+    // Encrypt Payment card
+    encryptCard (state) {
+      var moipCard = new Moip.CreditCard({
+        number: state.paymentCard.number,
+        cvc: state.paymentCard.cvc,
+        expMonth: state.paymentCard.expMonth,
+        expYear: state.paymentCard.expYear,
+        pubKey: state.public_key
+      })
+      if (moipCard.isValid()) {
+        state.paymentCardHash = moipCard.hash()
+        state.paymentCardType = moipCard.cardType()
+        console.log(state.paymentCardHash)
+      } else {
+        state.paymentCardHash = null
+        state.paymentCardType = 'Invalid credit card. Verify parameters: number, cvc, expiration Month, expiration Year'
+      }
+    },
     // Increments Cart Counter
     increment (state) {
       state.checkoutCount++
@@ -170,7 +231,7 @@ export const store = new Vuex.Store({
         context.commit('createOrder', response.data)
         context.commit('loader', false)
       }).catch(function (error) {
-        console.log(error.response)
+        context.commit('setError', error.response)
         context.commit('loader', false)
       })
     }
