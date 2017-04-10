@@ -50,7 +50,7 @@
             </div>
             <div class="col-sm-6 custom-margin">
               <label class="label-custom" for="phoneNumber">Phone: </label>
-              <input id="phoneNumber" v-model="costumer.phone.number" v-validate="'required'" :class="{'input-custom': true, 'is-danger': errors.has('phoneNumber') }" name="phoneNumber" type="number" placeholder="+55 (99) 99999-9999 ">
+              <input id="phoneNumber" v-model="costumer.phone.number" v-validate="'required'" :class="{'input-custom': true, 'is-danger': errors.has('phoneNumber') }" name="phoneNumber" type="number" placeholder="(99) 99999-9999 ">
               <span v-show="errors.has('phoneNumber')" class="validate-error">{{ errors.first('phoneNumber') }}</span>
             </div>
           </div>
@@ -81,6 +81,7 @@
 </template>
 
 <script>
+
 export default {
   name: 'userData',
   data () {

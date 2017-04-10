@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div class="row page-header">
-      Page Header
+      <h1>{{ pageTitle }}</h1>
     </div>
 
     <app-products></app-products>
@@ -31,7 +31,7 @@ export default {
   name: 'home',
   data () {
     return {
-      msg: 'Home!',
+      pageTitle: 'Welcome to Kuika Store',
       seen: true
     }
   },
@@ -46,6 +46,9 @@ export default {
 }
 </script>
 <style>
+h1{
+  color: #02b387;
+}
 .btn-checkout{
   margin: auto;
   width: 100%;

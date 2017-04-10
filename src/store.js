@@ -70,7 +70,6 @@ export const store = new Vuex.Store({
     },
     createdOrder: false,
     createdOrderObj: {},
-    orderId: null,
     // Card Porps
     paymentCard: {
       number: '5555666677778884',
@@ -78,13 +77,12 @@ export const store = new Vuex.Store({
       expMonth: '12',
       expYear: '18'
     },
-    paymentCardHash: null,
     paymentCardType: null,
     // Payment Api
     paymentApi: null,
     payment: {
       installmentCount: 1,
-      statementDescriptor: 'kuikaStore.com',
+      statementDescriptor: 'kuikastore',
       fundingInstrument: {
         method: 'CREDIT_CARD',
         creditCard: {
@@ -98,14 +96,15 @@ export const store = new Vuex.Store({
               number: null
             },
             phone: {
-              countryCode: null,
-              areaCode: null,
+              countryCode: 55,
+              areaCode: 11,
               number: null
             }
           }
         }
       }
-    }
+    },
+    createdPayment: null
   },
   getters: {
     // Set Getters For External Access to Props
@@ -130,11 +129,17 @@ export const store = new Vuex.Store({
     createdOrder (state) {
       return state.createdOrder
     },
+    orderId (state) {
+      return state.createdOrderObj.id
+    },
     paymentCard (state) {
       return state.paymentCard
     },
     paymentCardType (state) {
       return state.paymentCardType
+    },
+    cardHolder (state) {
+      return state.payment.fundingInstrument.creditCard.holder
     }
   },
   mutations: {
@@ -207,13 +212,16 @@ export const store = new Vuex.Store({
         pubKey: state.public_key
       })
       if (moipCard.isValid()) {
-        state.paymentCardHash = moipCard.hash()
         state.paymentCardType = moipCard.cardType()
-        console.log(state.paymentCardHash)
+        state.payment.fundingInstrument.creditCard.hash = moipCard.hash()
       } else {
         state.paymentCardHash = null
         state.paymentCardType = 'Invalid credit card. Verify parameters: number, cvc, expiration Month, expiration Year'
       }
+    },
+    // Updates Card Holder Data
+    updateCardHolder (state, cardHolder) {
+      state.payment.fundingInstrument.creditCard.holder = cardHolder
     },
     // Increments Cart Counter
     increment (state) {
@@ -229,6 +237,17 @@ export const store = new Vuex.Store({
       context.commit('loader', true)
       axios.post(context.state.orderApi, context.state.order, context.state.config).then(function (response) {
         context.commit('createOrder', response.data)
+        context.commit('loader', false)
+      }).catch(function (error) {
+        context.commit('setError', error.response)
+        context.commit('loader', false)
+      })
+    },
+    paymentApiCall (context) {
+      context.commit('loader', true)
+      axios.post(context.state.paymentApi, context.state.payment, context.state.config).then(function (response) {
+        console.log(response.data)
+        context.state.createdPayment = response.data
         context.commit('loader', false)
       }).catch(function (error) {
         context.commit('setError', error.response)
