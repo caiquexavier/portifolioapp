@@ -11,3 +11,5 @@ git clone https://github.com/caiquexavier/portifolioapp.git
 cd portifolioapp/
 npm install
 yarn install
+npm run build
+npm run dev
