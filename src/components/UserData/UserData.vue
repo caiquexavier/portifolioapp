@@ -45,7 +45,7 @@
           <div class="row">
             <div class="col-sm-6 custom-margin">
               <label class="label-custom" for="birthDate">Birth Date: </label>
-              <input id="birthDate" v-model="costumer.birthDate" v-validate="'required'" :class="{'input-custom': true, 'is-danger': errors.has('birthDate') }" name="birthDate" type="text" placeholder="DD/MM/YYYY">
+              <input id="birthDate" v-model="costumer.birthDate" v-validate="'required'" :class="{'input-custom': true, 'is-danger': errors.has('birthDate') }" name="birthDate" type="text" placeholder="YYYY-MM-DD">
               <span v-show="errors.has('birthDate')" class="validate-error">{{ errors.first('birthDate') }}</span>
             </div>
             <div class="col-sm-6 custom-margin">
