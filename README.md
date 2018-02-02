@@ -1,4 +1,4 @@
-# Teste Checkout Moip
+
 - APP desenvolvido em Javascript - VueJS Framework
 - Utlizado Vuex (Implementação de Redux para Vuejs)
 
